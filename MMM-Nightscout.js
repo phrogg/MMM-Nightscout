@@ -7,7 +7,9 @@ Module.register("MMM-Nightscout", {
     chartWidth: 350,
     chartHours: 4,
     renderChart: true,
-    extendedHeader: true
+    extendedHeader: true,
+    chartMaxMG: 400,
+    chartMaxMM: 18
   },
 
   getScripts: function() {
@@ -216,7 +218,7 @@ Module.register("MMM-Nightscout", {
               typ: "logarithmic",
               ticks: {
                 beginAtZero: true,
-                max: this.glucoseData.unit == "mmol" ? 18 : 400,
+                max: this.glucoseData.unit == "mmol" ? this.chartMaxMM : this.chartMaxMG,
                 min: this.glucoseData.unit == "mmol" ? 2 : 30
               },
               display: true,
