@@ -7,9 +7,7 @@ Module.register("MMM-Nightscout", {
     chartWidth: 350,
     chartHours: 4,
     renderChart: true,
-    extendedHeader: true,
-    chartMaxMG: 400,
-    chartMaxMM: 18
+    extendedHeader: true
   },
 
   getScripts: function() {
@@ -191,10 +189,10 @@ Module.register("MMM-Nightscout", {
               time: {
                 parser: "HH:mm",
                 unit: "minute",
-                unitStepSize: 30,
+                unitStepSize: 60,
                 displayFormats: {
                   minute:
-                    this.glucoseData.settings.timeFormat == 24
+                    this.glucoseData.settings.timeFormat == 12
                       ? "HH:mm"
                       : "hh:mm A"
                 }
@@ -218,7 +216,7 @@ Module.register("MMM-Nightscout", {
               typ: "logarithmic",
               ticks: {
                 beginAtZero: true,
-                max: this.glucoseData.unit == "mmol" ? this.chartMaxMM : this.chartMaxMG,
+                max: this.glucoseData.unit == "mmol" ? 10 : 200,
                 min: this.glucoseData.unit == "mmol" ? 2 : 30
               },
               display: true,
